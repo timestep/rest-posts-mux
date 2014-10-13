@@ -9,7 +9,7 @@ import (
 
 func main() {
 	r := mux.NewRouter().StrictSlash(true)
-	r.HandleFunc("/", Homehandler)
+	r.HandleFunc("/", HomeHandler)
 
 	//Posts collection
 	posts := r.Path("/posts").Subrouter()
@@ -21,7 +21,7 @@ func main() {
 	post.Methods("GET").Path("/edit").HandlerFunc(PostEditHandler)
 	post.Methods("GET").HandlerFunc(PostShowHandler)
 	post.Methods("PUT", "POST").HandlerFunc(PostUpdateHandler)
-	post.Methods("DELETE").HandlerFunc(PostDeleteHanlder)
+	post.Methods("DELETE").HandlerFunc(PostDeleteHandler)
 
 	fmt.Println("Starting server on :3000")
 	http.ListenAndServe(":3000", r)
